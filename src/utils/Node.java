@@ -2,7 +2,7 @@ package utils;
 
 public class Node {
 	
-	float x,y;
+	private float x,y;
 	
 	public Node(float x, float y) {
 		this.x = x;

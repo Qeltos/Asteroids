@@ -1,37 +1,43 @@
 package main;
 
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.GraphicsEnvironment;
-import java.awt.GridBagLayout;
+import java.awt.Dimension;
+import java.awt.Graphics;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Main {
+import gameObjects.HeroShip;
+
+public class Main extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private HeroShip hero;
+	private final int WIDTH = 800, HEIGHT = 800;
+	
+	public Main() {
+		setPreferredSize(new Dimension(HEIGHT, WIDTH));
+		setBackground(Color.BLACK);
+		hero = new HeroShip();
+	}
+
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Asteroids");
-		JPanel panel = new JPanel();
-		JLabel label = new JLabel("Hello World!!");
-		
-		frame.setSize(800, 800);
-		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-		frame.add(panel);
+		Main game = new Main();
+		frame.add(game);
+		frame.pack();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		
-		panel.setBackground(Color.black);
-		panel.add(label);
-		panel.setLayout(new GridBagLayout());
-		
-		label.setForeground(Color.white);
-		label.setFont(new Font("Calibri", Font.BOLD, 120));
-		for(Font font : GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts()) {
-			
-			System.out.println(font);
-			
-		}
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.setColor(Color.white);
+		hero.draw(g);
 	}
 
 }

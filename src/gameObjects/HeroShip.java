@@ -12,14 +12,7 @@ public class HeroShip extends GameObject{
 		super(spawnPoint);
 		rotation = Math.toRadians(-90);
 		radius = 30;
+		nrOfNodes = 3;
 		generateShape();
-	}
-
-	public void rotate(int rotation) {
-		this.rotation += Math.toRadians(rotation);
-	}
-
-	public void accelerate() {
-		velocity += 1;
 	}
 }

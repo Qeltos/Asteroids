@@ -9,7 +9,7 @@ import utils.Node;
 public abstract class GameObject {
 	protected ArrayList<Node> nodes;
 	protected double rotation, radians, velocity;
-	protected int radius;
+	protected int radius, nrOfNodes;
 	protected Node origin;
 	
 	public GameObject(Node spawnPoint) {
@@ -26,8 +26,8 @@ public abstract class GameObject {
 	}
 	
 	protected void generateShape() {
-		int angleStep = 360 / 3;
-		for (int i = 0; i < 3; i++) {
+		int angleStep = 360 / nrOfNodes;
+		for (int i = 0; i < nrOfNodes; i++) {
 			radians = Math.toRadians(i * angleStep);
 			double px = Math.cos(radians) * radius;
 			double py = Math.sin(radians) * radius;
@@ -49,5 +49,13 @@ public abstract class GameObject {
 			g.drawPolygon(p);
 		}
 
+	}
+	
+	public void rotate(int rotation) {
+		this.rotation += Math.toRadians(rotation);
+	}
+
+	public void accelerate() {
+		velocity += 1;
 	}
 }

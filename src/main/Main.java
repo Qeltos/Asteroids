@@ -2,6 +2,8 @@ package main;
 
 import javax.swing.*;
 
+import gameObjects.Asteroid;
+import gameObjects.GameObject;
 import gameObjects.HeroShip;
 
 import java.awt.*;
@@ -12,7 +14,8 @@ public class Main extends JPanel implements ActionListener, KeyListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private HeroShip ship;
+	private GameObject ship;
+	private GameObject asteroid;
     private Timer timer;
     private final int WIDTH = 800, HEIGHT = 600;
     
@@ -20,6 +23,8 @@ public class Main extends JPanel implements ActionListener, KeyListener {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.BLACK);
         ship = new HeroShip(WIDTH / 2, HEIGHT / 2);
+        asteroid = new Asteroid(150,150);
+        
         
         timer = new Timer(16, this); // 60 FPS (1000ms / 60 ≈ 16ms per frame)
         timer.start();
@@ -27,6 +32,7 @@ public class Main extends JPanel implements ActionListener, KeyListener {
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
+        
     }
 
    
@@ -36,6 +42,7 @@ public class Main extends JPanel implements ActionListener, KeyListener {
         super.paintComponent(g);
         g.setColor(Color.WHITE);
         ship.draw(g);
+        asteroid.draw(g);
     }
 
     @Override

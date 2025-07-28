@@ -48,6 +48,12 @@ public class Main extends JPanel implements ActionListener, KeyListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         ship.move();
+        asteroid.move();
+        
+		if (ship.collided(asteroid)) {
+			System.out.println("we have collision");
+		}
+        
         repaint();
     }
 

@@ -2,7 +2,7 @@ package gameObjects;
 
 import utils.Node;
 
-public class HeroShip extends GameObject{
+public class HeroShip extends GameObject {
 
 	public HeroShip(double x, double y) {
 		this(new Node(x, y));
@@ -15,4 +15,9 @@ public class HeroShip extends GameObject{
 		nrOfNodes = 3;
 		generateShape();
 	}
+
+	@Override
+	public void onCollision(Collidable object) {
+	}
+
 }

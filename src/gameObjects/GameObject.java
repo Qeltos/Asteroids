@@ -8,7 +8,7 @@ import utils.Node;
 
 public abstract class GameObject implements Collidable {
 	protected ArrayList<Node> nodes;
-	protected double rotation, radians, velocity;
+	protected double rotation, radians, vx, vy;
 	protected int radius, nrOfNodes;
 	protected Node origin;
 	protected Polygon p;
@@ -19,11 +19,18 @@ public abstract class GameObject implements Collidable {
 	}
 
 	public void move() {
-		double dx = Math.cos(rotation) * velocity;
-		double dy = Math.sin(rotation) * velocity;
-
-		origin.setX(origin.getX() + dx);
-		origin.setY(origin.getY() + dy);
+		origin.setX(origin.getX() + vx);
+		origin.setY(origin.getY() + vy);
+	}
+	
+	public void accelerate(double velocity) {
+	    vx += Math.cos(rotation) * velocity;
+	    vy += Math.sin(rotation) * velocity;
+	}
+	
+	public void friction(double factor) {
+	    vx *= factor;
+	    vy *= factor;
 	}
 
 	protected void generateShape() {
@@ -52,12 +59,8 @@ public abstract class GameObject implements Collidable {
 
 	}
 
-	public void rotate(int rotation) {
+	public void rotate(double rotation) {
 		this.rotation += Math.toRadians(rotation);
-	}
-
-	public void accelerate() {
-		velocity += 1;
 	}
 
 	@Override

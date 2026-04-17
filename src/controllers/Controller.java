@@ -59,9 +59,20 @@ public class Controller {
 
     // Anropas av game loopen varje tick
     public void update() {
-        if (keysPressed.contains("up"))    ship.accelerate();
-        if (keysPressed.contains("left"))  ship.rotate(-5);
-        if (keysPressed.contains("right")) ship.rotate(5);
+        if (keysPressed.contains("up")) {
+            ship.accelerate(0.1);
+        }
+
+        if (keysPressed.contains("left")) {
+            ship.rotate(-5);
+        }
+
+        if (keysPressed.contains("right")) {
+            ship.rotate(5);
+        }
+
+        ship.friction(0.99);
+        ship.move();
     }
 
     public InputMap getInputMap()   { return im; }

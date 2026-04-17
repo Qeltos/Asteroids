@@ -11,25 +11,36 @@ import gameObjects.GameObject;
 public class GamePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private List<GameObject> objects;
+	private List<GameObject> gameObjects;
 
 	public GamePanel(Dimension dimension) {
 		super();
 		setPreferredSize(dimension);
-		objects = new ArrayList<GameObject>();
+		gameObjects = new ArrayList<GameObject>();
+		setBackground(Color.black);
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 
 		g.setColor(Color.WHITE);
-		for (int i = 0; i < objects.size(); i++) {
-			objects.get(i).draw(g);
+		for (GameObject o : gameObjects) {
+			o.draw(g);
 		}
+
 	}
 
 	public void addObject(GameObject o) {
-		objects.add(o);
+		if (o != null) {
+			gameObjects.add(o);
+		}
+	}
+
+	public void update() {
+		for (GameObject o : gameObjects) {
+			o.move();
+		}
 	}
 
 }

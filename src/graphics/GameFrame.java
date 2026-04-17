@@ -1,8 +1,6 @@
 package graphics;
 
 import java.awt.Color;
-import java.awt.Dimension;
-
 import javax.swing.JFrame;
 
 public class GameFrame extends JFrame {
@@ -13,10 +11,9 @@ public class GameFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private GamePanel gamePanel;
 
-	public GameFrame(Dimension dimension) {
+	public GameFrame(GamePanel panel) {
 		super("Asteroids");
-
-		gamePanel = new GamePanel(dimension);
+		gamePanel = panel;
 		gamePanel.setFocusable(true);
 
 		add(gamePanel);

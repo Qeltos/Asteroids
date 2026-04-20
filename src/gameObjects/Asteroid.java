@@ -5,7 +5,7 @@ import java.util.Random;
 import utils.Node;
 
 public class Asteroid extends GameObject {
-	
+
 	private final int SMALL = 10;
 	private final int MEDIUM = 25;
 	private final int LARGE = 50;
@@ -33,11 +33,11 @@ public class Asteroid extends GameObject {
 			break;
 		}
 		case 2: {
-			value =  MEDIUM;
+			value = MEDIUM;
 			break;
 		}
 		case 3: {
-			value =  LARGE;
+			value = LARGE;
 			break;
 		}
 		}

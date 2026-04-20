@@ -23,15 +23,15 @@ public abstract class GameObject implements Collidable {
 		origin.setX(origin.getX() + vx);
 		origin.setY(origin.getY() + vy);
 	}
-	
+
 	public void accelerate(double velocity) {
-	    vx += Math.cos(rotation) * velocity;
-	    vy += Math.sin(rotation) * velocity;
+		vx += Math.cos(rotation) * velocity;
+		vy += Math.sin(rotation) * velocity;
 	}
-	
+
 	public void friction(double factor) {
-	    vx *= factor;
-	    vy *= factor;
+		vx *= factor;
+		vy *= factor;
 	}
 
 	protected abstract void generateShape();

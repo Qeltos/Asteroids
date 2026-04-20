@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
 import gameObjects.GameObject;
+import utils.WrapAroundHandler;
 
 public class GamePanel extends JPanel {
 
@@ -28,7 +29,6 @@ public class GamePanel extends JPanel {
 		for (GameObject o : gameObjects) {
 			o.draw(g);
 		}
-
 	}
 
 	public void addObject(GameObject o) {
@@ -39,6 +39,7 @@ public class GamePanel extends JPanel {
 
 	public void update() {
 		for (GameObject o : gameObjects) {
+			WrapAroundHandler.wrap(o, getSize());
 			o.move();
 		}
 	}

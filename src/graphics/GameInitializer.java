@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import javax.swing.Timer;
 import controllers.Controller;
 import gameObjects.HeroShip;
+import utils.AsteroidHandler;
 
 public class GameInitializer {
 
@@ -11,8 +12,7 @@ public class GameInitializer {
 	private final GameFrame frame;
 	private final HeroShip player;
 	private final Controller controller;
-	private Timer timer;
-	
+	private Timer timer, asteroidSpawnTimer;
 
 	public GameInitializer(Dimension dimension) {
 
@@ -20,9 +20,9 @@ public class GameInitializer {
 		frame = new GameFrame(panel);
 		player = new HeroShip(dimension.getWidth() / 2, dimension.getHeight() / 2);
 		controller = new Controller(player);
-		
+
 		panel.addObject(player);
-		
+
 		controllerSetup();
 		timer = new Timer(16, e -> {
 			controller.update();
@@ -30,6 +30,11 @@ public class GameInitializer {
 			panel.repaint();
 		});
 		timer.start();
+		asteroidSpawnTimer = new Timer(2000, e -> {
+			panel.addObject(AsteroidHandler.create(dimension));
+		});
+		asteroidSpawnTimer.start();
+
 	}
 
 	private void controllerSetup() {

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import utils.Node;
 
 public abstract class GameObject implements Collidable {
+	private final int LINE_LIMIT = 2;
 	protected ArrayList<Node> nodes;
 	protected double rotation, radians, vx, vy;
 	protected int radius, nrOfNodes;
@@ -33,19 +34,11 @@ public abstract class GameObject implements Collidable {
 	    vy *= factor;
 	}
 
-	protected void generateShape() {
-		int angleStep = 360 / nrOfNodes;
-		for (int i = 0; i < nrOfNodes; i++) {
-			radians = Math.toRadians(i * angleStep);
-			double px = Math.cos(radians) * radius;
-			double py = Math.sin(radians) * radius;
-			nodes.add(new Node(px, py));
-		}
-	}
+	protected abstract void generateShape();
 
 	public void draw(Graphics g) {
 
-		if (nodes.size() >= 2) {
+		if (nodes.size() >= LINE_LIMIT) {
 			p = new Polygon();
 			for (Node n : nodes) {
 

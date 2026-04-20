@@ -15,7 +15,6 @@ public class Asteroid extends GameObject {
 		Random rand = new Random();
 		radius = 100;
 		rotation = rand.nextDouble(-1, 1);
-		velocity = 1;
 		nrOfNodes = rand.nextInt(7, 17);
 		generateShape();
 	}
@@ -25,4 +24,17 @@ public class Asteroid extends GameObject {
 		// TODO Auto-generated method stub
 
 	}
+
+	@Override
+	protected void generateShape() {
+		int angleStep = 360 / nrOfNodes;
+		for (int i = 0; i < nrOfNodes; i++) {
+			radians = Math.toRadians(i * angleStep);
+			double px = Math.cos(radians) * radius;
+			double py = Math.sin(radians) * radius;
+			nodes.add(new Node(px, py));
+		}		
+	}
+	
+	
 }

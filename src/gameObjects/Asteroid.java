@@ -17,31 +17,28 @@ public class Asteroid extends GameObject {
 	public Asteroid(Node spawnPoint) {
 		super(spawnPoint);
 		Random rand = new Random();
-		radius = size(rand.nextInt(1, 4));
 		rotation = rand.nextDouble(-1, 1);
 		nrOfNodes = rand.nextInt(7, 17);
+		size(rand.nextInt(1, 4));
 		generateShape();
 	}
 
-	private int size(int key) {
-		int value = 0;
-		System.out.println(key);
+	private void size(int key) {
 
 		switch (key) {
 		case 1: {
-			value = SMALL;
+			radius = SMALL;
 			break;
 		}
 		case 2: {
-			value = MEDIUM;
+			radius = MEDIUM;
 			break;
 		}
 		case 3: {
-			value = LARGE;
+			radius = LARGE;
 			break;
 		}
 		}
-		return value;
 	}
 
 	@Override
